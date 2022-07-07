@@ -1,0 +1,32 @@
+{
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+  "Lua.workspace.library": [
+    "/home/jack/.lua/libraries"
+  ],
+  "languageserver": {
+    "ccls": {
+      "command": "ccls",
+      "filetypes": ["c", "cpp", "cuda", "objc", "objcpp"],
+      "rootPatterns": [".ccls-root", "compile_commands.json"],
+      "initializationOptions": {
+        "cache": {
+          "directory": ".ccls-cache"
+        },
+        "client": {
+          "snippetSupport": true
+        }
+      }
+    },
+    "lua": {
+      "settings": {
+        "Lua": {
+          "workspace": {
+            "library": [
+              "/home/jack/.lua/libraries"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

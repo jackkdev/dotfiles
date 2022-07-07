@@ -1,0 +1,10 @@
+require("preload")
+require("plugins")
+
+require("config/treesitter")
+require("config/nerdtree")
+require("config/emmet")
+require("config/theme")
+require("config/lightline")
+require("config/vim")
+require("config/coc")

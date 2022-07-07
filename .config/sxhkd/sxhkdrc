@@ -1,0 +1,29 @@
+#
+#  Applications
+#
+super + Return
+  alacritty
+
+super + d
+  discord
+
+super + b
+  firefox-developer-edition
+
+super + alt + s
+  maim -s ~/Pictures/(date).png
+
+super + a
+  rofi -show
+
+#
+#  System
+#
+super + shift + c
+  pkill -USR1 -x sxhkd && bspc wm -r
+
+super + bracket{left,right}
+  bspc desktop -f {prev,next}.local
+
+super + {h,j,k,l}
+  bspc node -f {west,south,north,east}

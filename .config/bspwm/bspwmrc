@@ -1,0 +1,65 @@
+#!/bin/sh
+
+#
+#  Xorg Configuration
+#
+xrandr -v \
+  --output DP-4 --mode 2560x1440 --rate "143.97" --primary \
+  --output HDMI-0 --mode 1920x1080 --right-of DP-4 \
+  --output DP-3 --mode 1920x1080 --rotate inverted --left-of DP-4 --scale 1x1
+
+#
+#  SXHKD Configuration
+#
+pkill sxhkd
+pgrep -x sxhkd > /dev/null || sxhkd > .sxhkd.log &
+
+#
+#  BSPWM Configuration
+#
+
+#
+#  Desktop Layout:
+#  I   = Browser
+#  II  = Discord
+#  III = Terminal (IDE)
+#  IV  = Terminal 
+#  V   = Terminal
+#
+bspc monitor DP-3 -d I II III IV V
+bspc monitor DP-4 -d VI VII VIII IV X
+bspc monitor HDMI-0 -d XI XII XIII XIV XV
+
+bspc config border_width          1
+bspc config window_gap            4
+bspc config normal_border_color   \#212121
+bspc config focused_border_color  \#76cce0
+
+bspc config split_ratio           0.5
+bspc config borderless_monocle    false
+bspc config gapless_monocle       false
+
+bspc config focus_follows_pointer true
+
+#
+#  BSPWM Rules
+#
+# bspc rule --add firefoxdeveloperedition desktop="XI" 
+# bspc rule --add discord                 desktop="XII"
+
+#
+#  System Configuration
+#
+for i in 0 1 2
+do
+  nitrogen --set-scaled --head=$i ~/Pictures/background.jpg
+  xsetroot -cursor_name left_ptr &
+done
+
+
+pkill polybar
+MONITOR=DP-4 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
+MONITOR=HDMI-0 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
+MONITOR=DP-3 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
+
+picom &
