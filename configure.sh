@@ -7,7 +7,12 @@ root=$(pwd)
 directories=(.config/*)
 
 for directory in "${directories[@]}"; do
-  rp=$(realpath "${directory}")
-  echo "+ Creating a symlink: ${HOME}/${directory} -> ${rp}"
-  ln -s "${rp}" "${HOME}/${directory}"
+  rp=$(realpath "$directory")
+  sp="$HOME/$directory"
+  if [[ ! -e $sp ]]; then
+    echo "+ Creating a symlink: $sp -> $rp"
+    ln -s "$rp" "$sp"
+  else
+    echo "+ A symlink already exists for: $sp -> $rp"
+  fi
 done
