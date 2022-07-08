@@ -5,8 +5,8 @@
 #
 xrandr -v \
   --output DP-4 --mode 2560x1440 --rate "143.97" --primary \
-  --output HDMI-0 --mode 1920x1080 --right-of DP-4 \
-  --output DP-3 --mode 1920x1080 --rotate inverted --left-of DP-4 --scale 1x1
+  --output HDMI-0 --mode 1920x1080 --left-of DP-4 \
+  --output DP-3 --mode 1920x1080 --rotate inverted --right-of DP-4 --scale 1x1
 
 #
 #  SXHKD Configuration
@@ -26,9 +26,9 @@ pgrep -x sxhkd > /dev/null || sxhkd > .sxhkd.log &
 #  IV  = Terminal 
 #  V   = Terminal
 #
-bspc monitor DP-3 -d I II III IV V
+bspc monitor HDMI-0 -d I II III IV V
 bspc monitor DP-4 -d VI VII VIII IV X
-bspc monitor HDMI-0 -d XI XII XIII XIV XV
+bspc monitor DP-3 -d XI XII XIII XIV XV
 
 bspc config border_width          1
 bspc config window_gap            4
@@ -56,10 +56,9 @@ do
   xsetroot -cursor_name left_ptr &
 done
 
-
 pkill polybar
-MONITOR=DP-4 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
-MONITOR=HDMI-0 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
 MONITOR=DP-3 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
+MONITOR=HDMI-0 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
+MONITOR=DP-4 polybar bspwm 2>&1 | tee -a /tmp/polybar.log & disown
 
 picom &

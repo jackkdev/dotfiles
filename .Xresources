@@ -1,0 +1,17 @@
+!================!
+!     Colors     !
+!================!
+*background: #2a2f38
+*foreground: #e1e3e4
+
+*accentColor: #72cce8
+*urgentColor: #ff6578
+
+*black: #181a1c
+*red: #ff6578
+*green: #9dd274
+*yellow: #eacb64
+*blue: #72cce8
+*magenta: #ba9cf3
+*cyan: #f69c5e
+*white: #e1e3e4

@@ -3,16 +3,18 @@
 set -e
 shopt -s nullglob
 
-root=$(pwd)
 directories=(.config/*)
+others=(".zshrc" ".alacritty.yml" ".Xresources")
 
-for directory in "${directories[@]}"; do
-  rp=$(realpath "$directory")
-  sp="$HOME/$directory"
-  if [[ ! -e $sp ]]; then
+paths=(${directories[@]} ${others[@]})
+for path in "${paths[@]}"; do
+  rp=$(realpath "$path")
+  sp="$HOME/$path"
+  if [[ ! -e "$sp" ]]; then
     echo "+ Creating a symlink: $sp -> $rp"
     ln -s "$rp" "$sp"
   else
     echo "+ A symlink already exists for: $sp -> $rp"
   fi
 done
+
